@@ -29,6 +29,8 @@
     "import/prefer-default-export": "off",
     "camelcase": "off",
     "prettier/prettier": "error",
+    "react/prop-types": "off",
+    "no-unused-expressions": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-filename-extension": [
@@ -51,6 +53,14 @@
       {
         "tsx": "never",
         "ts": "never"
+      }
+    ],
+    "@typescript-eslint/ban-types": [
+      "error",
+      {
+        "types": {
+          "object": false
+        }
       }
     ]
   },
