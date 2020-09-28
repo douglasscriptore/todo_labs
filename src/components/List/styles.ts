@@ -31,6 +31,12 @@ export const Container = styled.div<ContainerProps>`
       border-radius: 18px;
       background: #3b5bfd;
       border: 0;
+
+      transition: opacity 0.2s;
+
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 

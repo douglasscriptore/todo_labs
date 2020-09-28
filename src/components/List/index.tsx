@@ -1,14 +1,17 @@
-import React, { BaseHTMLAttributes } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { MdAdd } from 'react-icons/md';
+import { useSweetAlert } from '../../hooks/sweetalert';
+import { useBoard } from '../../hooks/board';
+
 import Card from '../Card';
 
 import { Container } from './styles';
 
 interface ICardDTO {
-  id: number;
+  id: string;
   content: string;
-  labels: string[];
+  labels?: string[];
   user?: string;
 }
 
@@ -21,16 +24,32 @@ type IListDTO = {
 
 interface ListProps {
   key: string;
+  index: number;
   data: IListDTO;
 }
 
-const List: React.FC<ListProps> = ({ data }) => {
+const List: React.FC<ListProps> = ({ data, index: listIndex }) => {
+  const { open } = useSweetAlert();
+  const { add } = useBoard();
+  const handleAdd = useCallback(() => {
+    open({
+      input: true,
+      title: 'Add new card',
+      cancelBtnText: 'Cancel',
+      confirmBtnText: 'Save',
+      callback: {
+        info: listIndex,
+        func: add,
+      },
+    });
+  }, [add, listIndex, open]);
+
   return (
     <Container done={data.done}>
       <header>
         <h2>{data.title}</h2>
         {data.creatable && (
-          <button type="button">
+          <button type="button" onClick={() => handleAdd()}>
             <MdAdd size={24} color="#fff" />
           </button>
         )}
@@ -38,7 +57,7 @@ const List: React.FC<ListProps> = ({ data }) => {
 
       <ul>
         {data.cards.map((card, index) => (
-          <Card key={card.id} index={index} data={card} />
+          <Card key={card.id} index={index} listIndex={listIndex} data={card} />
         ))}
       </ul>
     </Container>

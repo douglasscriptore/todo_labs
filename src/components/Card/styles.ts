@@ -8,6 +8,19 @@ interface ContainerProps {
   isDragging: boolean;
 }
 
+export const Button = styled.button`
+  margin-left: -10px !important;
+  width: 20px !important;
+  height: 20px !important;
+  opacity: 0;
+  background: #c53030 !important;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.8 !important;
+  }
+`;
+
 export const Container = styled.div<ContainerProps>`
   position: relative;
   background: #fff;
@@ -18,10 +31,16 @@ export const Container = styled.div<ContainerProps>`
   border-top: 20px solid rgba(230, 236, 245, 0.4);
   cursor: grab;
 
-  header {
+  > header {
     position: absolute;
     top: -22px;
     left: 15px;
+
+    padding-right: 20px;
+
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
 
   p {
@@ -52,6 +71,10 @@ export const Container = styled.div<ContainerProps>`
         opacity: 0;
       }
     `}
+
+  &:hover ${Button} {
+    opacity: 1;
+  }
 `;
 
 export const Label = styled.span<Labelprops>`
