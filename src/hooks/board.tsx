@@ -91,9 +91,14 @@ const BoardProvider: React.FC = ({ children }) => {
               : { ...list },
           ),
         });
+
+        setTimeout(
+          () => open({ title: 'Card added', type: 'success', timeout: 2000 }),
+          200,
+        );
       }
     },
-    [data],
+    [data, open],
   );
 
   const remove = useCallback(
