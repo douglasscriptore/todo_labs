@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 
 import { MdAdd } from 'react-icons/md';
 import { useSweetAlert } from '../../hooks/sweetalert';
@@ -37,6 +37,7 @@ const List: React.FC<ListProps> = ({ data, index: listIndex }) => {
       title: 'Add new card',
       cancelBtnText: 'Cancel',
       confirmBtnText: 'Save',
+      timeout: 0,
       callback: {
         info: listIndex,
         func: add,

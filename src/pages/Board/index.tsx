@@ -1,6 +1,5 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import { useBoard } from '../../hooks/board';
-import { loadLists } from '../../services/api';
 
 import List from '../../components/List';
 
